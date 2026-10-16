@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#09090c" />
+<meta name="description" content="Itzme_paS1 — Minecraft PvP player and combat strategist." />
+<title>Itzme_paS1 | Combat Master</title>
+<style>
+:root{--bg:#08090d;--panel:#111218;--panel2:#171820;--gold:#f4c45e;--gold2:#a97824;--red:#d9273c;--cyan:#54f0e4;--purple:#a88aff;--text:#f4f2ec;--muted:#a4a4ad;--line:rgba(255,255,255,.1);--max:1180px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:82px}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 12% 8%,rgba(217,39,60,.09),transparent 32%),radial-gradient(ellipse at 90% 42%,rgba(244,196,94,.06),transparent 28%),linear-gradient(135deg,#090a0e,#08090d 65%,#0d0a0e)}
+a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+.topbar{height:76px;position:sticky;top:0;z-index:20;background:rgba(8,9,13,.84);backdrop-filter:blur(18px);border-bottom:1px solid rgba(244,196,94,.15)}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.04em}.brand-mark{width:35px;height:35px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold),#8b5115);clip-path:polygon(50% 0,94% 24%,94% 76%,50% 100%,6% 76%,6% 24%);color:#16100a;font-size:18px;text-shadow:none}.brand span{color:var(--gold)}.nav-links{display:flex;gap:28px;align-items:center;color:#c8c6c1;font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}.nav-links a{transition:color .2s}.nav-links a:hover{color:var(--gold)}.nav-cta{border:1px solid rgba(244,196,94,.45);padding:10px 15px;border-radius:4px;color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.menu-toggle{display:none;background:transparent;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+.hero{min-height:calc(100svh - 76px);display:grid;align-items:center;position:relative;padding:72px 0 82px;isolation:isolate}
+.hero:before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,rgba(8,9,13,.98) 0%,rgba(8,9,13,.85) 47%,rgba(8,9,13,.28) 100%),repeating-linear-gradient(0deg,transparent 0 47px,rgba(255,255,255,.018) 48px),repeating-linear-gradient(90deg,transparent 0 47px,rgba(255,255,255,.018) 48px)}
+.hero:after{content:"";position:absolute;z-index:-1;right:-14vw;top:5%;width:60vw;height:90%;background:radial-gradient(ellipse,rgba(217,39,60,.13),transparent 62%);filter:blur(20px);animation:breath 5s ease-in-out infinite}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:48px}.eyebrow{display:flex;align-items:center;gap:12px;color:var(--gold);font-size:11px;font-weight:900;letter-spacing:.23em;text-transform:uppercase}.eyebrow:before{content:"";height:1px;width:36px;background:var(--gold)}h1{font-size:clamp(48px,8vw,104px);line-height:.92;letter-spacing:-.075em;margin:23px 0 17px;font-weight:950;text-transform:uppercase}h1 .gold{color:var(--gold);text-shadow:0 0 28px rgba(244,196,94,.16)}.subtitle{font-size:clamp(16px,2vw,22px);font-weight:900;letter-spacing:.28em;color:#f4eee1;margin-bottom:19px}.hero-copy{max-width:540px;color:#b9b8c1;font-size:16px;line-height:1.85}.hero-copy strong{color:#f1eee7}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.btn{border:1px solid transparent;padding:14px 20px;min-height:48px;border-radius:3px;font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}.btn:hover{transform:translateY(-2px)}.btn-primary{color:#17110a;background:linear-gradient(115deg,#ffe5a0,#e8b548 58%,#b97c22);box-shadow:0 8px 28px rgba(244,196,94,.12)}.btn-primary:hover{box-shadow:0 10px 34px rgba(244,196,94,.26)}.btn-secondary{border-color:rgba(255,255,255,.19);background:rgba(255,255,255,.025);color:#f1eee7}.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.hero-note{display:flex;align-items:center;gap:10px;margin-top:30px;color:#777985;font-size:11px;letter-spacing:.08em;text-transform:uppercase}.status-dot{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red)}
+.profile-stage{min-height:430px;position:relative;display:grid;place-items:center}.orbit{position:absolute;width:min(100%,410px);aspect-ratio:1;border:1px solid rgba(244,196,94,.19);border-radius:50%;animation:spin 32s linear infinite}.orbit:before,.orbit:after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 20px var(--gold)}.orbit:before{top:16%;left:15%}.orbit:after{right:9%;bottom:24%;background:var(--red);box-shadow:0 0 20px var(--red)}.orbit-inner{position:absolute;width:79%;aspect-ratio:1;border:1px dashed rgba(217,39,60,.35);border-radius:50%;animation:spin 24s linear infinite reverse}.profile-frame{width:min(70%,280px);aspect-ratio:1;border-radius:50%;position:relative;display:grid;place-items:center;background:linear-gradient(145deg,#26222a,#0d0d12 60%);border:2px solid var(--gold);box-shadow:0 0 0 10px rgba(244,196,94,.045),0 0 70px rgba(217,39,60,.16),inset 0 0 35px rgba(244,196,94,.08);overflow:hidden}.profile-frame:before{content:"";position:absolute;inset:8px;border:1px solid rgba(244,196,94,.25);border-radius:50%}.profile-placeholder{text-align:center;z-index:1;padding:15px}.profile-placeholder svg{width:76px;height:76px;display:block;margin:0 auto 14px;opacity:.85}.profile-placeholder strong{display:block;color:var(--gold);font-size:12px;letter-spacing:.12em}.profile-placeholder small{display:block;color:#888792;font-size:10px;margin-top:5px}.profile-img{width:100%;height:100%;object-fit:cover;display:none}.profile-caption{position:absolute;bottom:3%;left:50%;transform:translateX(-50%);white-space:nowrap;background:rgba(10,10,14,.9);border:1px solid rgba(244,196,94,.35);padding:9px 14px;font-size:10px;letter-spacing:.16em;color:var(--gold);font-weight:900}.floating-label{position:absolute;border:1px solid rgba(255,255,255,.12);background:rgba(16,16,22,.88);padding:11px 14px;box-shadow:0 12px 35px #0005}.floating-label b{display:block;font-size:10px;letter-spacing:.12em;color:var(--gold)}.floating-label span{display:block;color:#aaa9b3;font-size:10px;margin-top:2px}.label-left{left:0;top:25%}.label-right{right:0;bottom:24%}.section{padding:100px 0;position:relative}.section-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:34px}.kicker{color:var(--red);font-size:11px;font-weight:900;letter-spacing:.23em;text-transform:uppercase}.section h2{font-size:clamp(31px,5vw,52px);line-height:1.05;letter-spacing:-.045em;margin:10px 0 0}.section h2 span{color:var(--gold)}.section-intro{max-width:430px;color:var(--muted);font-size:14px;line-height:1.8;margin:0}
+.rank-section{background:linear-gradient(180deg,rgba(255,255,255,.015),transparent 70%);border-top:1px solid rgba(255,255,255,.045);border-bottom:1px solid rgba(255,255,255,.045)}.rank-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.rank-card{position:relative;overflow:hidden;min-height:280px;background:linear-gradient(145deg,rgba(25,26,34,.98),rgba(12,13,18,.98));border:1px solid rgba(255,255,255,.09);padding:24px;transition:transform .25s,border-color .25s,box-shadow .25s;isolation:isolate}.rank-card:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 80% 15%,var(--glow,rgba(244,196,94,.12)),transparent 44%);opacity:.8;transition:opacity .25s}.rank-card:after{content:"";position:absolute;top:0;left:0;width:40px;height:2px;background:var(--gold);transition:width .25s}.rank-card:hover{transform:translateY(-6px);border-color:rgba(244,196,94,.7);box-shadow:0 15px 45px rgba(0,0,0,.26),0 0 28px rgba(244,196,94,.07)}.rank-card:hover:after{width:100%}.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.card-index{font-size:10px;letter-spacing:.16em;color:#777984}.rank-badge{font-size:11px;font-weight:950;letter-spacing:.12em;padding:7px 10px;border:1px solid rgba(217,39,60,.5);background:rgba(217,39,60,.12);color:#ff6573}.rank-badge.lt{border-color:rgba(84,240,228,.4);background:rgba(84,240,228,.08);color:var(--cyan)}.icon-wrap{height:130px;display:grid;place-items:center;margin:2px 0 13px;position:relative}.icon-wrap:before{content:"";position:absolute;width:104px;height:104px;border-radius:50%;background:var(--glow,rgba(244,196,94,.12));filter:blur(22px);opacity:.7}.item-icon{width:120px;height:120px;position:relative;transition:transform .3s;filter:drop-shadow(0 8px 9px rgba(0,0,0,.5))}.rank-card:hover .item-icon{transform:scale(1.09) rotate(-2deg)}.rank-name{font-size:20px;font-weight:900;letter-spacing:-.025em;margin:0}.rank-meta{display:flex;justify-content:space-between;align-items:center;margin-top:6px;color:#8f909b;font-size:11px;letter-spacing:.07em;text-transform:uppercase}.rank-meta span:last-child{color:var(--gold)}.rank-note{font-size:10px;color:#777984;margin-top:14px;letter-spacing:.06em}
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:54px;align-items:start}.about-panel{padding:26px;background:linear-gradient(145deg,#171820,#0d0e13);border:1px solid var(--line);position:relative}.about-panel:before{content:"";position:absolute;left:0;top:0;width:3px;height:70px;background:linear-gradient(var(--gold),transparent)}.about-panel h3{font-size:21px;margin:0 0 12px}.about-panel p,.about-copy p{color:#aaaab4;font-size:14px;line-height:1.9}.about-copy p:first-child{margin-top:0}.about-points{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}.about-point{border-top:1px solid rgba(244,196,94,.27);padding-top:12px}.about-point strong{display:block;font-size:12px;color:var(--gold);letter-spacing:.08em}.about-point span{display:block;font-size:11px;color:#898a95;margin-top:4px}
+.philosophy{padding:35px;background:linear-gradient(110deg,rgba(217,39,60,.12),rgba(244,196,94,.055));border:1px solid rgba(244,196,94,.17);display:flex;justify-content:space-between;align-items:center;gap:30px}.philosophy h3{font-size:clamp(22px,3vw,34px);line-height:1.15;letter-spacing:-.035em;margin:0;max-width:670px}.philosophy h3 span{color:var(--gold)}.philosophy p{font-size:12px;color:#aaa9b2;margin:10px 0 0}
+footer{border-top:1px solid rgba(255,255,255,.08);padding:27px 0;color:#777984;font-size:11px}.footer-row{display:flex;justify-content:space-between;align-items:center;gap:20px}.footer-brand{font-weight:900;letter-spacing:.1em;color:#d8d4cb}.footer-brand span{color:var(--gold)}.backtop{color:var(--gold);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes breath{0%,100%{opacity:.65;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+@media(max-width:850px){.hero-grid{grid-template-columns:1fr;gap:24px}.hero{padding-top:62px}.hero-copy{max-width:650px}.profile-stage{min-height:350px;order:-1}.profile-frame{width:220px}.orbit{width:320px}.label-left{left:7%}.label-right{right:7%}.rank-grid{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr;gap:24px}.section-head{align-items:start;flex-direction:column;gap:12px}}
+@media(max-width:600px){.wrap{width:min(var(--max),calc(100% - 28px))}.topbar{height:66px}.nav-links{display:none;position:absolute;left:14px;right:14px;top:65px;padding:17px;background:#111218;border:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0}.nav-links.open{display:flex}.nav-links a{padding:13px 8px;border-bottom:1px solid rgba(255,255,255,.06)}.nav-cta{display:none}.menu-toggle{display:block}.hero{min-height:auto;padding:44px 0 65px}.hero-grid{gap:5px}.profile-stage{min-height:290px}.profile-frame{width:190px}.orbit{width:270px}.floating-label{padding:8px 10px}.label-left{left:0;top:19%}.label-right{right:0;bottom:16%}.floating-label b{font-size:9px}.floating-label span{font-size:9px}h1{font-size:clamp(43px,13vw,70px)}.subtitle{letter-spacing:.18em}.hero-copy{font-size:14px}.hero-actions .btn{flex:1}.section{padding:70px 0}.rank-grid{grid-template-columns:1fr;gap:12px}.rank-card{min-height:245px;padding:20px}.icon-wrap{height:112px}.item-icon{width:108px;height:108px}.section-head{margin-bottom:25px}.about-points{grid-template-columns:1fr 1fr}.philosophy{padding:24px;align-items:flex-start;flex-direction:column}.footer-row{align-items:flex-start;flex-direction:column;gap:8px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="Itzme paS1 home"><span class="brand-mark">✦</span><span>ITZME_<span>paS1</span></span></a>
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#ranks">Ranks</a><a href="#about">About</a><a href="#mindset">Mindset</a>
+    </nav>
+    <a class="nav-cta" href="#ranks">View my tiers ↗</a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+  </div>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div class="hero-content">
+      <div class="eyebrow">Player profile / Sri Lanka</div>
+      <h1>ITZME_<span class="gold">paS1</span></h1>
+      <div class="subtitle">COMBAT MASTER</div>
+      <p class="hero-copy"><strong>Minecraft PvP · Competitive Combat · Sri Lankan CWR Network</strong><br>Focused on timing, movement, pressure, and smart decisions. Explore my PvP categories and personal tier list.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#ranks">Explore My Ranks <span aria-hidden="true">↘</span></a>
+        <a class="btn btn-secondary" href="#about">About Me</a>
+      </div>
+      <div class="hero-note"><span class="status-dot"></span> Personal player profile · Tier details below</div>
+    </div>
+    <div class="profile-stage" aria-label="Player profile picture placeholder">
+      <div class="orbit"></div><div class="orbit-inner"></div>
+      <div class="floating-label label-left"><b>PLAYSTYLE</b><span>Timing · Mechanics</span></div>
+      <div class="floating-label label-right"><b>FOCUS</b><span>Competitive PvP</span></div>
+      <div class="profile-frame">
+        <img class="profile-img" id="profileImage" alt="Itzme_paS1 profile picture" />
+        <div class="profile-placeholder" id="profilePlaceholder">
+          <svg viewBox="0 0 100 100" role="img" aria-label="Profile image placeholder"><path d="M50 10 84 30 84 70 50 90 16 70 16 30Z" fill="none" stroke="#f4c45e" stroke-width="2"/><path d="M50 26 70 38 70 61 50 74 30 61 30 38Z" fill="#f4c45e" opacity=".13"/><circle cx="50" cy="42" r="12" fill="#d7b56b"/><path d="M27 73 Q30 54 50 54 Q70 54 73 73" fill="#d7b56b"/></svg>
+          <strong>YOUR PROFILE IMAGE</strong><small>Replace this placeholder anytime</small>
+        </div>
+      </div>
+      <div class="profile-caption">ITZME_paS1 // PLAYER</div>
+    </div>
+  </div>
+</section>
+
+<section class="section rank-section" id="ranks">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="kicker">PvP specializations</div><h2>MY <span>RANKS</span></h2></div>
+      <p class="section-intro">Six combat categories. Each tier is shown as provided for this personal profile—not as an independently verified tournament result.</p>
+    </div>
+    <div class="rank-grid">
+      <article class="rank-card" style="--glow:rgba(184,91,255,.18)">
+        <div class="card-top"><span class="card-index">CATEGORY / 01</span><span class="rank-badge">HT2</span></div>
+        <div class="icon-wrap"><svg class="item-icon" viewBox="0 0 128 128" role="img" aria-label="Purple End Crystal pixel art">
+          <defs><linearGradient id="crystalG" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe1ff"/><stop offset=".45" stop-color="#e68cff"/><stop offset="1" stop-color="#6a2bd4"/></linearGradient></defs>
+          <ellipse cx="64" cy="108" rx="35" ry="8" fill="#9d45ff" opacity=".25"/><path d="M37 93 64 77 91 93 64 109Z" fill="#4b287f" stroke="#c99aff" stroke-width="2"/><path d="M37 93V101L64 117V109Z" fill="#32204f"/><path d="M91 93V101L64 117V109Z" fill="#5f348e"/><path d="M64 12 91 39 80 77 64 91 48 77 37 39Z" fill="url(#crystalG)" stroke="#f5d9ff" stroke-width="2"/><path d="M64 12V91L48 77 37 39Z" fill="#8d48d8"/><path d="M64 12 91 39 72 43Z" fill="#fff0ff"/><path d="M37 39 64 52 91 39 80 77 64 91 48 77Z" fill="#b76df2"/><path d="M64 52V91L48 77Z" fill="#6a35b1"/><path d="M64 52 91 39 80 77 64 91Z" fill="#e6a8ff"/><path d="M47 30 59 20" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".85"/></svg></div>
+        <h3 class="rank-name">Crystal PvP</h3><div class="rank-meta"><span>End Crystal Combat</span><span>Personal tier</span></div><div class="rank-note">PURPLE / VOID ENERGY</div>
+      </article>
+      <article class="rank-card" style="--glow:rgba(110,132,255,.16)">
+        <div class="card-top"><span class="card-index">CATEGORY / 02</span><span class="rank-badge">HT3</span></div>
+        <div class="icon-wrap"><svg class="item-icon" viewBox="0 0 128 128" role="img" aria-label="Pixel-art mace with purple-blue handle">
+          <defs><linearGradient id="maceMetal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f1f4fa"/><stop offset=".42" stop-color="#858b9a"/><stop offset="1" stop-color="#343846"/></linearGradient></defs>
+          <path d="M39 85 49 95 82 62 72 52Z" fill="#31354a" stroke="#9ca8ff" stroke-width="2"/><path d="M48 94 57 103 90 70 81 61Z" fill="#7563c6"/><path d="M56 102 64 110 98 76 90 68Z" fill="#383f63"/><path d="M61 106 68 113" stroke="#a8b8ff" stroke-width="4"/><path d="M29 22 46 15 70 22 91 43 87 65 68 76 47 68 29 49Z" fill="url(#maceMetal)" stroke="#dfe4f1" stroke-width="2"/><path d="M29 22 46 15 53 34 37 42Z" fill="#f5f6fc"/><path d="M46 15 70 22 67 43 53 34Z" fill="#b9c0cf"/><path d="M70 22 91 43 73 52 67 43Z" fill="#626a7b"/><path d="M29 22 37 42 47 68 68 76 60 57 53 34Z" fill="#7c8291"/><path d="M53 34 67 43 73 52 60 57Z" fill="#e7ebf5"/><path d="M47 68 68 76 87 65 73 52 60 57Z" fill="#4b5060"/><path d="M37 42 53 34 60 57 47 68Z" fill="#9fa6b5"/></svg></div>
+        <h3 class="rank-name">Mace</h3><div class="rank-meta"><span>Impact Combat</span><span>Personal tier</span></div><div class="rank-note">STEEL / ARCANE BLUE</div>
+      </article>
+      <article class="rank-card" style="--glow:rgba(84,240,228,.17)">
+        <div class="card-top"><span class="card-index">CATEGORY / 03</span><span class="rank-badge lt">LT2</span></div>
+        <div class="icon-wrap"><svg class="item-icon" viewBox="0 0 128 128" role="img" aria-label="Turquoise Minecraft-style diamond">
+          <path d="M31 19 96 19 113 43 64 111 15 43Z" fill="#168f9c" stroke="#9afff5" stroke-width="2"/><path d="M31 19 48 43 15 43Z" fill="#65fff0"/><path d="M31 19H96L80 43H48Z" fill="#b0fff6"/><path d="M96 19 113 43H80Z" fill="#38d9d0"/><path d="M48 43H80L64 111Z" fill="#20b6bb"/><path d="M15 43H48L64 111Z" fill="#127e92"/><path d="M80 43H113L64 111Z" fill="#0d6a85"/><path d="M48 43 64 33 80 43 64 111Z" fill="#5af2e5" opacity=".7"/><path d="M38 25H83" stroke="#fff" stroke-width="3" opacity=".8"/></svg></div>
+        <h3 class="rank-name">Diamond SMP</h3><div class="rank-meta"><span>Diamond Combat</span><span>Personal tier</span></div><div class="rank-note">DIAMOND / TURQUOISE</div>
+      </article>
+      <article class="rank-card" style="--glow:rgba(244,196,94,.15)">
+        <div class="card-top"><span class="card-index">CATEGORY / 04</span><span class="rank-badge">HT2</span></div>
+        <div class="icon-wrap"><svg class="item-icon" viewBox="0 0 128 128" role="img" aria-label="Crossed turquoise diamond axe and sword">
+          <path d="M25 100 93 31 103 41 35 110Z" fill="#3e4360" stroke="#b7c3ff" stroke-width="2"/><path d="M28 97 37 106 31 112 22 103Z" fill="#e2b34b"/><path d="M35 88 43 96 37 102 29 94Z" fill="#a8772b"/><path d="M34 29 44 19 104 79 94 89Z" fill="#287d8a" stroke="#9cfff5" stroke-width="2"/><path d="M34 29 44 19 61 36 51 46Z" fill="#9afff4"/><path d="M51 46 61 36 77 52 67 62Z" fill="#46d9d0"/><path d="M67 62 77 52 94 69 84 79Z" fill="#168e9e"/><path d="M84 79 94 69 104 79 94 89Z" fill="#0e647c"/><path d="M23 20 45 12 59 28 51 45 35 47 18 36Z" fill="#23c9c4" stroke="#b0fff8" stroke-width="2"/><path d="M23 20 45 12 40 29 18 36Z" fill="#b4fff4"/><path d="M45 12 59 28 40 29Z" fill="#54eee0"/><path d="M18 36 40 29 35 47Z" fill="#118e9c"/><path d="M73 84 94 105 106 94 85 73Z" fill="#d7a83f" stroke="#ffe5a1" stroke-width="2"/><path d="M94 105 106 94 112 100 100 112Z" fill="#8f6125"/></svg></div>
+        <h3 class="rank-name">Axe</h3><div class="rank-meta"><span>Axe / Sword Set</span><span>Personal tier</span></div><div class="rank-note">CROSSED WEAPONS / GOLD EDGE</div>
+      </article>
+      <article class="rank-card" style="--glow:rgba(84,240,228,.14)">
+        <div class="card-top"><span class="card-index">CATEGORY / 05</span><span class="rank-badge lt">LT3</span></div>
+        <div class="icon-wrap"><svg class="item-icon" viewBox="0 0 128 128" role="img" aria-label="Turquoise diamond sword pixel art">
+          <path d="M27 21 43 13 107 77 92 92Z" fill="#168b99" stroke="#a1fff5" stroke-width="2"/><path d="M27 21 43 13 54 31 39 39Z" fill="#b4fff6"/><path d="M39 39 54 31 70 47 55 55Z" fill="#66f4e6"/><path d="M55 55 70 47 86 63 71 71Z" fill="#38d5d0"/><path d="M71 71 86 63 107 77 92 92Z" fill="#0e697f"/><path d="M17 79 49 47 59 57 27 89Z" fill="#e6b34b" stroke="#ffe9a5" stroke-width="2"/><path d="M10 89 22 101 33 90 21 78Z" fill="#805524"/><path d="M13 92 22 101 30 93 21 84Z" fill="#c88f2f"/><path d="M43 13 107 77" stroke="#e1fffb" stroke-width="2" opacity=".8"/></svg></div>
+        <h3 class="rank-name">Sword</h3><div class="rank-meta"><span>Sword Combat</span><span>Personal tier</span></div><div class="rank-note">TURQUOISE / PIXEL EDGE</div>
+      </article>
+      <article class="rank-card" style="--glow:rgba(255,54,78,.18)">
+        <div class="card-top"><span class="card-index">CATEGORY / 06</span><span class="rank-badge lt">LT1</span></div>
+        <div class="icon-wrap"><svg class="item-icon" viewBox="0 0 128 128" role="img" aria-label="Glowing red pixel-art heart">
+          <defs><linearGradient id="heartG" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffb0ad"/><stop offset=".48" stop-color="#f13b50"/><stop offset="1" stop-color="#8d102c"/></linearGradient></defs>
+          <path d="M27 25H47V35H57V45H67V35H77V25H97V35H107V65H97V75H87V85H77V95H67V105H57V95H47V85H37V75H27V65H17V35H27Z" fill="#5e0d28" opacity=".7" transform="translate(3 5)"/><path d="M27 20H47V30H57V40H67V30H77V20H97V30H107V60H97V70H87V80H77V90H67V100H57V90H47V80H37V70H27V60H17V30H27Z" fill="url(#heartG)" stroke="#ff9ca6" stroke-width="2"/><path d="M27 30H47V40H57V50H67V40H77V30H97V40H87V50H77V60H67V70H57V60H47V50H37V40H27Z" fill="#ff777f"/><path d="M27 30H47V40H37V50H27Z" fill="#ffe1d8"/><path d="M67 70H77V80H67Z M57 80H67V90H57Z" fill="#a51434"/><path d="M17 44H27V58H17Z M97 44H107V58H97Z" fill="#c41d3e"/></svg></div>
+        <h3 class="rank-name">UHC</h3><div class="rank-meta"><span>Survival Combat</span><span>Personal tier</span></div><div class="rank-note">HEART / CRIMSON GLOW</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="kicker">The player behind the name</div>
+      <h2>ABOUT <span>ME</span></h2>
+      <div class="about-panel" style="margin-top:26px">
+        <h3>Itzme_paS1</h3>
+        <p>A Minecraft PvP player building skill across different combat styles, from crystal and sword fights to mace and survival-based combat.</p>
+        <div class="about-points">
+          <div class="about-point"><strong>IDENTITY</strong><span>Minecraft PvP</span></div>
+          <div class="about-point"><strong>COMMUNITY</strong><span>Sri Lankan CWR Network</span></div>
+          <div class="about-point"><strong>FOCUS</strong><span>Mechanics & timing</span></div>
+          <div class="about-point"><strong>PROFILE</strong><span>Personal tier list</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-copy">
+      <p>Welcome to my PvP profile. This site brings my chosen combat categories and tiers into one place with a clean, competitive look.</p>
+      <p>Good PvP is more than clicking fast. It takes awareness, positioning, timing, decision-making, and learning from every fight. Different modes reward different skills, and mastering them means adapting to the situation.</p>
+      <p>The ranks shown here are the personal ranks supplied for this page. No tournament wins, win rates, or official verification are claimed.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="mindset" style="padding-top:0">
+  <div class="wrap">
+    <div class="philosophy">
+      <div><div class="kicker">Combat mindset</div><h3>STAY CALM. READ THE FIGHT. <span>MAKE THE PLAY.</span></h3><p>Every encounter is a chance to improve.</p></div>
+      <a class="btn btn-secondary" href="#home">Back to top ↑</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap footer-row"><div class="footer-brand">ITZME_<span>paS1</span> <span style="color:#777984;font-weight:500">· Minecraft PvP profile</span></div><div>Personal website · Built for the community</div><a class="backtop" href="#home">Return to top ↑</a></div></footer>
+<script>
+const menuToggle=document.getElementById('menuToggle');
+const navLinks=document.getElementById('navLinks');
+menuToggle.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));menuToggle.textContent=open?'Close':'Menu';});
+navLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{navLinks.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='Menu';}));
+
+// Profile image updated to the uploaded Minecraft skin. No other website content or styling changed.
+const PROFILE_IMAGE = 'data:image/webp;base64,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';
+const img=document.getElementById('profileImage');
+img.src=PROFILE_IMAGE;
+img.style.display='block';
+document.getElementById('profilePlaceholder').style.display='none';
+</script>
+</body>
+</html>
